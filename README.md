@@ -7,19 +7,19 @@ Event Horizon is an application architecture that for building client-side web a
 
 ### Tech
 
-Singularity uses a number of open source projects to work properly:
+Event Horizon uses a number of open source projects to work properly:
 
 * [MeteorJS] - Meteor is a complete platform for building web and mobile apps in pure JavaScript.
 * [BabelJS] - Babel transforms your JavaScript
 * [node.js] - evented I/O for the backend
 
 ### Documentation
-https://www.gitbook.com/book/patrickml/singularity-odm
+https://www.gitbook.com/book/patrickml/event-horizon
 
 ### Installation
 
 ```sh
-$ meteor add patrickml:singularity
+$ meteor add patrickml:event-horizon
 ```
 
 
