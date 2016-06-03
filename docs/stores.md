@@ -15,5 +15,7 @@ const defaultStore = {
   visibleHeight: 0,
 };
 
+// create our store `window-height` with the default values found in
+// the constant variable `defaultStore`
 EventHorizon.createStore('window-height', defaultStore);
 ```
