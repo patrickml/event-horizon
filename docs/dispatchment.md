@@ -1,7 +1,7 @@
 # Dispatchment
  Dispatchment is used to call an Action from anywhere within our application. When you dispatch an Action you may pass data into the registered action.
 
-```
+```js
 // React Native
 import EventHorizon from 'react-native-event-horizon';
 // or for Meteor 
