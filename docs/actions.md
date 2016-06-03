@@ -13,11 +13,19 @@ const defaultStore = {
   visibleHeight: 0,
 };
 
+// create our store `window-height` with the default values found in
+// the constant variable `defaultStore`
 EventHorizon.createStore('window-height', defaultStore);
 
+// create the action `UPDATE_WINDOW_HEIGHT` which takes in the param
+// `visibleHeight`, which can be any type of object. 
+// We then call `update` to update our store
+// if you need to perform calculations based on old store values
+// you can find the old values under the variable `store`
 EventHorizon.createAction('window-height', 'UPDATE_WINDOW_HEIGHT', (store, visibleHeight, update) => {
   update({
     visibleHeight,
   });
 });
+
 ```
