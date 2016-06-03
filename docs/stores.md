@@ -3,7 +3,7 @@
 
 ###Creating a Store
 
-```
+```js
 // React Native
 import EventHorizon from 'react-native-event-horizon';
 // or for Meteor 
