@@ -1,7 +1,7 @@
 # Subscription
  Subscriptions are how we get reactive updates from our store. In order to use a subscription we need to use something like `react-komposer`
 
-```
+```js
 import React, { PropTypes } from 'react';
 import {
   View,
