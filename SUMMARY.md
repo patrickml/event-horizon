@@ -1,5 +1,5 @@
 # Summary
 
 * [Stores](docs/stores.md)
-* Actions
+* [Actions](docs/actions.md)
 
