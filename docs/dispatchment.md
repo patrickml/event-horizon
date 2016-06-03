@@ -33,7 +33,7 @@ EventHorizon.createAction('window-height', 'UPDATE_WINDOW_HEIGHT', (store, visib
 // DeviceEventEmitter is a react-native function that listens to 
 // native events such as `keyboardWillShow` we want to listen
 // to the changes in this so we can update our UI when ever a
-// keyboard is opened
+// keyboard is opened or closed
 DeviceEventEmitter.addListener('keyboardWillShow', (e) => {
   // set the window height to the height of the window with the keyboard
   EventHorizon.dispatch('UPDATE_WINDOW_HEIGHT', e.endCoordinates.height);
