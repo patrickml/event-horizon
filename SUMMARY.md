@@ -1,4 +1,4 @@
 # Summary
 
-* Stores
+* [Stores](docs/stores.md)
 
