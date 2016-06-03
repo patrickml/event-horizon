@@ -2,5 +2,5 @@
 
 * [Stores](docs/stores.md)
 * [Actions](docs/actions.md)
-* Dispatchment
+* [Dispatchment](docs/dispatchment.md)
 
