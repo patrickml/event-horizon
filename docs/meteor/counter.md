@@ -245,7 +245,7 @@ Well there is only one thing left to do and that is create an entry file and let
 
 under the original `/client` folder that was created with your application -- remove everything `main.css, main.js, main.html` and add a new file called `entry.js`.
 
-In `entry.js` add the following code
+In `entry.js` add the following code:
 
 ```js
 import '/imports/client/routes';
