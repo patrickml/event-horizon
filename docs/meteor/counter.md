@@ -21,7 +21,7 @@ npm install --save react react-dom react-komposer react-mounter
 ```
 
 Yup you guessed it everything react related but that's just the npm side of things. We still need a router and of course EventHorizon!
-These depends we will get from atmosphere
+These depends we will get from atmosphere.
 
 ```
 meteor add patrickml:event-horizon kadira:flow-router
@@ -41,16 +41,16 @@ meteor add patrickml:event-horizon kadira:flow-router
 /imports/clients/ui/components
 ```
 
- Simple enough -- we have a place for our stores and action as well as our React Components.
+ Simple enough -- we have a place for our stores and actions as well as our React Components.
  
 Well that's it, Lets get onto the code!
 
 ##Code
 
 ###Create a store
- Well lets start with the store. In this application we will the only one we need and it will be our only source of data.
+ Well lets start with the store. In this application we will only need one and it will be our only source of data.
 
- Under `/imports/client/stores` create the file `counter.store.jsx` and add the following code
+ Under `/imports/client/stores` create the file `counter.store.jsx` and add the following code:
 
 ```js
 import EventHorizon from 'meteor/patrickml:event-horizon';
@@ -66,7 +66,7 @@ EventHorizon.createStore('counter', defaultStore);
 
 What we just did was import `EventHorizon` from our dependencies, create the default structure for our store, and of course create the store itself.
 
-The purpose of the `defaultStore` being exportable is that you may want to reset the store as you will see later in this tutorial.
+The purpose of the `defaultStore` being exportable is that you may want to reset the store. You will see an example of this later in this tutorial.
 
 
 ###Create some Actions
@@ -74,15 +74,15 @@ The purpose of the `defaultStore` being exportable is that you may want to reset
 
 The function will have three params `(store, data, update)` 
 
-  `store` => this is the current value of the store before updating
+  `store` => this is the current value of the store, before updating
 
   `data` => this is any data you wish to pass to the action from a dispatchment (We will cover these later)
 
-  `update` => this is the function that will update your store. It uses Object.assign({}, store, yourData) to update the store making sure we never mutate any objects. This also allows you to just update a single key in the store.
+  `update` => this is the function that will update your store. It uses Object.assign({}, store, yourData) to update the store making sure we never mutate any objects. This also allows you to just update a single key in the store. Because this is a function you can update the store via callbacks and promises.
 
  So lets create the file `counter.actions.js` under `/imports/client/actions`
  
- Now in this file add the following code.
+ Now in this file add the following code:
 
 ```js
 import EventHorizon from 'meteor/patrickml:event-horizon';
@@ -119,14 +119,14 @@ EventHorizon.createAction('counter', 'RESET_COUNTER', (store, count, update) => 
 });
 ```
 
-Okay so we just created a few new actions for our store named `counter`. We will use these later in our UI to `INCREMENT`, `DECREMENT`, `SET`, and `RESET` our the value `counter` in our store
+Okay so we just created a few new actions for the store named `counter`. We will use these later in our UI to `INCREMENT`, `DECREMENT`, `SET`, and `RESET` our the value `counter` in the store.
 
 ###React and Such
- Well we obviously need some kind of UI to render our counter values in. In order to do so we will need to create our `Routes` and our `Components`
+ Well we obviously need some kind of UI to render our counter values in. In order to do so we will need to create our `Routes` and our `Components`.
 
 Lets start with the routes.
 
- Under the `/imports/client` folder create `router.jsx` and add the following code.
+ Under the `/imports/client` folder create `router.jsx` and add the following code:
  
 ```js
 import React from 'react';
@@ -148,12 +148,12 @@ FlowRouter.route('/', {
 
 As you can see we will need two components `MainLayout` and `CounterPage`.
 
-####Main Layout
- This is nothing special just a container to render our page in.
+####MainLayout
+ This is nothing special. It's Just a container to render our page in.
 
  Create the file `main.layout.jsx` under `/imports/clients/ui/layouts`
 
-Add the following code
+Add the following code:
 
 ```js
 import React from 'react';
@@ -170,7 +170,7 @@ Yup almost useless -- but in most apps this is how you would render things.
 ####Counter Page
  Ahh now things are going to start to get interesting. We are going to create the main page where we will render the counter and the buttons to dispatch events to our actions. 
 
-Create `counter.page.jsx` under `/imports/clients/ui/pages` and add the following code
+Create `counter.page.jsx` under `/imports/clients/ui/pages` and add the following code:
 
 ```js
 import React from 'react';
@@ -204,7 +204,7 @@ export default () => (
 )
 ```
 
-Alright so we have a few things to talk about here. As you can see each button has a registered `onClick` which returns an arrow function that calls `EventHorizon.dispatch`. `EventHorizon.dispatch` takes two params and returns a promise. We wont go over the promise part in this tutorial but we can explain the two params.
+Alright so we have a few things to talk about here. As you can see each button has a registered `onClick` which returns an arrow function that calls `EventHorizon.dispatch`. `EventHorizon.dispatch` takes two params and returns a promise. We wont go over the promise part in this tutorial, but we can explain the two params.
 
 The params for `EventHorizon.dispatch` are 
 
@@ -212,16 +212,16 @@ The params for `EventHorizon.dispatch` are
   
   `data` => this is the data you would like to pass to your action. It can be any type of object including nothing!
 
-So when we click on the `Increment` button we are dispatching to EventHorizon to call the action `INCREMENT_COUNTER`. We set this up earlier in the tutorial. If you remember this action takes the current value of the store and adds one to it `store.count + 1`. This is an example of passing no data through our dispatchment. `DECREMENT_COUNTER` and `RESET_COUNTER` are the same way -- we don't need to pass any data through.
+So when we click on the `Increment` button we are dispatching to EventHorizon to call the action `INCREMENT_COUNTER`. We had set this up earlier in this tutorial. If you remember this action takes the current value of the store and adds one to it `store.count + 1`. This is an example of passing no data through our dispatchment. `DECREMENT_COUNTER` and `RESET_COUNTER` are the same way -- we don't need to pass any data through.
 
-However we have this other action `SET_COUNTER` that is under the `setCount` function. As you can see we are getting the current value from our store. Now you maybe wondering but is it reactive? The answer is no. We are not getting the value within a `Tracker.autorun` We can values from stores at any point in time reactive or non-reactive. Here we want to get the value so we can auto fill in the prompt -- incase the use forgets the previous number. Once the user enters in their new number we call `EventHorizon.dispatch('SET_COUNTER', newCount)` and pass in the new value we would like to see in the store -- but not after checking to make sure the user entered in good data.
+However we have another action, `SET_COUNTER`, that is under the `setCount` function. As you can see we are getting the current value from our store. Now you maybe wondering "but is it reactive?" The answer is no. We are not getting the value within a `Tracker.autorun` We can values from stores at any point in time reactive or non-reactive. Here we want to get the value so we can auto fill in the prompt -- in-case the user forgets the previous number. Once the user enters in their new number we call `EventHorizon.dispatch('SET_COUNTER', newCount)`. When we call it we also pass in the new value the user would like to see in the store, but not after checking to make sure the user entered in good data.
 
 Dispatchment is pretty simple -- when this happens trigger this action with this data -- Then your Action defines what will happen next.
 
 ###The Counter
  Okay so thus far we have laid out our `store`, `actions`, and UI that uses our `dispatchments`, but now we need to subscribe to our store and render our value `count` reactively to the screen.
 
-To do so create the file `counter.jsx` under `/imports/clients/ui/components` and add the following code
+To do so create the file `counter.jsx` under `/imports/clients/ui/components` and add the following code:
 
 ```js
 import React from 'react';
@@ -237,7 +237,9 @@ export default composeWithTracker((props, onData) => {
   onData(null, EventHorizon.subscribe('counter'));
 })(Count);
 ```
-Well dam that was simple. All we needed to do was use a Tracker dependent composition function like `composeWithTracker` and pass in `EventHorizon.subscribe('counter')` Now when our store updates the component will as well! The best part is that you can use values from your store to update your meteor subscriptions and even queries. This is because they all use `Tracker`. Meaning we **don't** need to do something like `connect(mapStateToProps)(composeWithTacker(onPropsChange)(App))` like if you we're using Redux.
+Well dam, that was simple. All we needed to do was use a Tracker dependent composition function like `composeWithTracker` and pass in `EventHorizon.subscribe('counter')` Now when our store updates the component will as well! 
+
+The best part is that you can use values from your store to update your meteor subscriptions and even queries. This is because they all use `Tracker`. Meaning we **don't** need to do something like `connect(mapStateToProps)(composeWithTacker(onPropsChange)(App))` like if you we're using Redux.
 
 Well there is only one thing left to do and that is create an entry file and let meteor do its thing!
 
