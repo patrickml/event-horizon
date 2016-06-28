@@ -1,3 +1,3 @@
 # Meteor Examples
 
-[Counter](counter.md)
+[Counter](counter.md) -- simple reactive counter
