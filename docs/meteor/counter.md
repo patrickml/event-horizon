@@ -27,9 +27,6 @@ These depends we will get from atmosphere
 meteor add patrickml:event-horizon kadira:flow-router
 ```
 
-Well that's it! Lets get onto the code.
-
-
 ###Folder Creation
  Well there are many Architectures that are recommended for meteor. You can use which ever you would like, but for this example I'm going to go with what makes sense for this small application.
 
@@ -45,3 +42,7 @@ Well that's it! Lets get onto the code.
 ```
 
  Simple enough -- we have a place for our stores and action as well as our React Components.
+ 
+Well that's it, Lets get onto the code!
+
+ 
