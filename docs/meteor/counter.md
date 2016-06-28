@@ -39,9 +39,9 @@ Well that's it! Lets get onto the code.
 /imports/client/stores
 /imports/client/actions
 /imports/clients/ui
-/imports/clients/layouts
-/imports/clients/pages
-/imports/clients/components
+/imports/clients/ui/layouts
+/imports/clients/ui/pages
+/imports/clients/ui/components
 ```
 
  Simple enough -- we have a place for our stores and action as well as our React Components.
