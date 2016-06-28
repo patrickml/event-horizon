@@ -5,5 +5,5 @@
 * [Actions](docs/actions.md)
 * [Dispatchment](docs/dispatchment.md)
 * [Subscription](docs/subscription.md)
-* Meteor Examples
+* [Meteor Examples](docs/meteor/index.md)
 
